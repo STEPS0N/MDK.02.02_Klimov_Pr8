@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -27,13 +28,13 @@ namespace WeatherReport
             Init();
         }
 
-        public async void Init()
+        public async void Init(float lat = 58.009671f, float lon = 56.226184f)
         {
             parent.Children.Clear();
             days.Items.Clear();
             daysList.Clear();
 
-            response = await GetWeather.Get(58.009671f, 56.226184f);
+            response = await GetWeather.Get(lat, lon);
 
             var group = response.list.GroupBy(x => DateTimeOffset.FromUnixTimeSeconds(x.dt).LocalDateTime.Date).ToList();
 
@@ -77,6 +78,27 @@ namespace WeatherReport
         private void Refresh(object sender, RoutedEventArgs e)
         {
             Init();
+        }
+
+        private async void Search(object sender, RoutedEventArgs e)
+        {
+            string city = textCity.Text.Trim();
+
+            if (string.IsNullOrEmpty(city))
+            {
+                MessageBox.Show("Введите город!");
+                return;
+            }
+
+            var coords = await GetCoord.GetCoordinates(city);
+
+            if (coords.lat == 0 && coords.lon == 0)
+            {
+                MessageBox.Show("Город не найден");
+                return;
+            }
+
+            Init(coords.lat, coords.lon);
         }
     }
 }
