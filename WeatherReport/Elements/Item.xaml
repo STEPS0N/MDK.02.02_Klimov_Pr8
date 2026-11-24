@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="WeatherReport.Elements.Item"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WeatherReport.Elements"
+             mc:Ignorable="d" >
+    <Border BorderBrush="#FFC7C7C7" Background="White" CornerRadius="10" BorderThickness="0,0,0,1" Padding="15,15" Margin="10">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock x:Name="lDay" Text="2" FontSize="32" FontWeight="Light" Margin="0,0,10,0"/>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock x:Name="lMonth" Text="мая," FontSize="12" Foreground="#888"/>
+                    <TextBlock x:Name="lToday" Text="сегодня" FontSize="12" Foreground="#888"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="Давление" FontSize="10" Foreground="#999" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="0" Grid.Column="4" Text="Влажность" FontSize="10" Foreground="#999" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="0" Grid.Column="5" Text="Ощущается" FontSize="10" Foreground="#999" HorizontalAlignment="Center"/>
+                <Border Grid.Row="0" Grid.ColumnSpan="6" BorderBrush="#F0F0F0" BorderThickness="0,0,0,1" Margin="0,15,0,0" VerticalAlignment="Bottom"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Утром" FontSize="12" Foreground="#888" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lTempMorning" Grid.Row="1" Grid.Column="1" Text="—" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lConditionMorning" Grid.Row="1" Grid.Column="2" Text="" FontSize="12" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lPressureMorning" Grid.Row="1" Grid.Column="3" Text="—" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lHumidityMorning" Grid.Row="1" Grid.Column="4" Text="—" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lFeelsMorning" Grid.Row="1" Grid.Column="5" Text="—" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Днём" FontSize="12" Foreground="#888" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lTempDay" Grid.Row="2" Grid.Column="1" Text="—" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lConditionDay" Grid.Row="2" Grid.Column="2" Text="" FontSize="12" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lPressureDay" Grid.Row="2" Grid.Column="3" Text="—" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lHumidityDay" Grid.Row="2" Grid.Column="4" Text="—" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lFeelsDay" Grid.Row="2" Grid.Column="5" Text="—" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Вечером" FontSize="12" Foreground="#888" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lTempEvening" Grid.Row="3" Grid.Column="1" Text="—" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lConditionEvening" Grid.Row="3" Grid.Column="2" Text="" FontSize="12" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lPressureEvening" Grid.Row="3" Grid.Column="3" Text="—" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lHumidityEvening" Grid.Row="3" Grid.Column="4" Text="—" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lFeelsEvening" Grid.Row="3" Grid.Column="5" Text="—" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Ночью" FontSize="12" Foreground="#888" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lTempNight" Grid.Row="4" Grid.Column="1" Text="—" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lConditionNight" Grid.Row="4" Grid.Column="2" Text="" FontSize="12" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lPressureNight" Grid.Row="4" Grid.Column="3" Text="—" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lHumidityNight" Grid.Row="4" Grid.Column="4" Text="—" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lFeelsNight" Grid.Row="4" Grid.Column="5" Text="—" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <TextBlock Text="Каждые 3 часа:" FontSize="12" Foreground="#888" Margin="0,15,0,5"/>
+            <Border BorderBrush="#F0F0F0" BorderThickness="0,1,0,0" Padding="0,5">
+                <ItemsControl x:Name="lHourlyList">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="70"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="70"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding lHour}" FontSize="12" Foreground="#888" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="{Binding lTemp}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" Text="{Binding lCondition}" FontSize="12" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="3" Text="{Binding lPressure}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="4" Text="{Binding lHumidity}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="5" Text="{Binding lFeels}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+        </StackPanel>
+    </Border>
+</UserControl>

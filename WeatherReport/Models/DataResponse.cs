@@ -8,21 +8,36 @@ namespace WeatherReport.Models
 {
     public class DataResponse
     {
-        public List<Forecast> forecasts { get; set; }
+        public List<ForecastItem> list { get; set; }
     }
 
-    public class Forecast
+    public class ForecastItem
     {
-        public DateTime date { get; set; }
-        public List<Hour> hours { get; set; }
+        public long dt { get; set; }
+        public Main main { get; set; }
+        public List<Weather> weather { get; set; }
+    }
+
+    public class Main
+    {
+        public double temp { get; set; }
+        public double feels_like { get; set; }
+        public int pressure { get; set; }
+        public int humidity { get; set; }
+    }
+
+    public class Weather
+    {
+        public string description { get; set; }
     }
 
     public class Hour
     {
-        public string hour { get; set; }
-        public string condition { get; set; }
+        public DateTime time { get; set; }
+        public double temp { get; set; }
+        public double feels_like { get; set; }
         public int humidity { get; set; }
-        public int prec_type { get; set; }
-        public int temp { get; set; }
+        public int pressure { get; set; }
+        public string description { get; set; }
     }
 }

@@ -18,6 +18,8 @@ namespace WeatherReport
     /// </summary>
     public partial class MainWindow : Window
     {
+        DataResponse response;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -26,7 +28,22 @@ namespace WeatherReport
 
         public async void Init()
         {
-            DataResponse response = await GetWeather.Get(58.009671f, 56.226184f);
+            response = await GetWeather.Get(58.009671f, 56.226184f);
+        }
+
+        public void Create(int idForecast)
+        {
+
+        }
+
+        private void SelectDay(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Refresh(object sender, RoutedEventArgs e)
+        {
+            Init();
         }
     }
 }
