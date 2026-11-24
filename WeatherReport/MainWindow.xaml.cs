@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeatherReport.Classes;
+using WeatherReport.Models;
 
 namespace WeatherReport
 {
@@ -19,6 +21,12 @@ namespace WeatherReport
         public MainWindow()
         {
             InitializeComponent();
+            Init();
+        }
+
+        public async void Init()
+        {
+            DataResponse response = await GetWeather.Get(58.009671f, 56.226184f);
         }
     }
 }

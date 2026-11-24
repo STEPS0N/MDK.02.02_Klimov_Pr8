@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using WeatherReport.Models;
 
 namespace WeatherReport.Classes
 {
@@ -11,8 +13,10 @@ namespace WeatherReport.Classes
     {
         public static string Url = "https://api.weather.yandex.ru/v2/forecast";
         public static string Key = "demo_yandex_weather_api_key_ca6d09349ba0";
-        public static async Task Get(float lat, float lon)
+        public static async Task<DataResponse> Get(float lat, float lon)
         {
+            DataResponse DataResponse = null;
+
             using (HttpClient client = new HttpClient())
             {
                 using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"{Url}?lat={lat}&lon={lon}".Replace(",", ".")))
@@ -21,11 +25,14 @@ namespace WeatherReport.Classes
 
                     using (var response = await client.SendAsync(request))
                     {
-                        string DataResponse = await response.Content.ReadAsStringAsync();
+                        string ContentResponse = await response.Content.ReadAsStringAsync();
+
+                        DataResponse = JsonConvert.DeserializeObject<DataResponse>(ContentResponse);
                     }
                 };
             };
 
+            return DataResponse;
         }
     }
 }

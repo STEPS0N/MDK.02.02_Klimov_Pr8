@@ -8,7 +8,7 @@ namespace WeatherReport.Models
 {
     public class DataResponse
     {
-        public List<Forecast> forecasts { get; set; };
+        public List<Forecast> forecasts { get; set; }
     }
 
     public class Forecast
